@@ -9,13 +9,27 @@ class Emacs < Formula
 
   depends_on "gnutls"
   depends_on "gtk+3"
+  depends_on "libgccjit"
   depends_on "tree-sitter"
 
   def install
+    args = %w[
+      --with-pgtk
+      --with-tree-sitter
+      --with-native-compilation
+      --with-json
+    ]
+
+    # Get libgccjit detection
+    libgccjit = Formula["libgccjit"].opt_lib/"gcc/current"
+    ENV.append "LDFLAGS", "-L#{libgccjit}"
+    ENV.append "LIBRARY_PATH", libgccjit
+    ENV.append "CPATH", Formula["libgccjit"].opt_include
+
     # Hack to make this build on immutable distros (where /home -> /var/home)
     ENV["HOMEBREW_PREFIX"] = HOMEBREW_PREFIX.realpath
 
-    # Copied this command from
+    # Copied this from
     # 'https://github.com/NixOS/nixpkgs/blob/c9d1572336ba8ba2936add51ea4615a6bc1effaa/pkgs/applications/editors/emacs/make-emacs.nix'
     # to make the generated dump file hermetic.
     inreplace "src/Makefile.in", "RUN_TEMACS = ./temacs", "RUN_TEMACS = env -i ./temacs"
@@ -23,7 +37,7 @@ class Emacs < Formula
     # Tree sitter patches
     inreplace "src/treesit.c", "ts_language_version", "ts_language_abi_version"
 
-    system "./configure", "--with-pgtk", "--with-tree-sitter", *std_configure_args
+    system "./configure", *args, *std_configure_args
     system "make", "install"
   end
 end

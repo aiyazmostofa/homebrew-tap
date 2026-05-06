@@ -7,9 +7,10 @@ class Emacs < Formula
 
   depends_on "gnutls"
   depends_on "gtk+3"
+  depends_on "tree-sitter"
 
   def install
-    system "./configure", "--with-pgtk", *std_configure_args
+    system "./configure", "--with-pgtk", "--with-tree-sitter", *std_configure_args
     system "make", "install"
   end
 end

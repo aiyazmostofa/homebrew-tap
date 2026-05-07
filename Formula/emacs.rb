@@ -8,6 +8,12 @@ class Emacs < Formula
   sha256 "b3f36f18a6dd2715713370166257de2fae01f9d38cfe878ced9b1e6ded5befd9"
   license "GPL-3.0-or-later"
 
+  bottle do
+    root_url "https://github.com/aiyazmostofa/homebrew-tap/releases/download/emacs-30.2"
+    rebuild 1
+    sha256 x86_64_linux: "cf54de015b9550890a8ebfe9510f887cd44bd2cf96b1d3f557f8a269fb1adb13"
+  end
+
   depends_on "gcc" => :build
   depends_on "pkgconf" => :build
 

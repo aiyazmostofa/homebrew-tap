@@ -8,9 +8,9 @@ class Emacs < Formula
   sha256 "b3f36f18a6dd2715713370166257de2fae01f9d38cfe878ced9b1e6ded5befd9"
   license "GPL-3.0-or-later"
 
+  depends_on "gcc" => :build
   depends_on "pkgconf" => :build
 
-  depends_on "gcc"
   depends_on "gnutls"
   depends_on "gtk+3"
   depends_on "libgccjit"
@@ -20,7 +20,7 @@ class Emacs < Formula
     args = %w[
       --with-pgtk
       --with-tree-sitter
-      --with-native-compilation=aot
+      --with-native-compilation
       --with-json
     ]
 
@@ -44,5 +44,8 @@ class Emacs < Formula
 
     system "./configure", *args, *std_configure_args
     system "make", "install"
+
+    # Remove files that conflict with other Brew things
+    rm share/"glib-2.0/schemas/gschemas.compiled"
   end
 end

@@ -7,6 +7,7 @@ class Emacs < Formula
 
   depends_on "pkgconf" => :build
 
+  depends_on "gcc"
   depends_on "gnutls"
   depends_on "gtk+3"
   depends_on "libgccjit"
@@ -21,10 +22,11 @@ class Emacs < Formula
     ]
 
     # Get libgccjit detection
-    libgccjit = Formula["libgccjit"].opt_lib/"gcc/current"
-    ENV.append "LDFLAGS", "-L#{libgccjit}"
-    ENV.append "LIBRARY_PATH", libgccjit
-    ENV.append "CPATH", Formula["libgccjit"].opt_include
+    libgccjit = Formula["libgccjit"]
+    libgccjit_lib = libgccjit.opt_lib/"gcc/current"
+    ENV.append "LDFLAGS", "-Wl,-rpath,#{libgccjit_lib}"
+    ENV.append "LIBRARY_PATH", libgccjit_lib
+    ENV.append "CPATH", libgccjit.opt_include
 
     # Hack to make this build on immutable distros (where /home -> /var/home)
     ENV["HOMEBREW_PREFIX"] = HOMEBREW_PREFIX.realpath

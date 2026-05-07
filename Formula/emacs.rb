@@ -16,6 +16,26 @@ class Emacs < Formula
   depends_on "libgccjit"
   depends_on "tree-sitter"
 
+  # Indirect linkage (to satisfy CI)
+  depends_on "at-spi2-core"
+  depends_on "cairo"
+  depends_on "dbus"
+  depends_on "fontconfig"
+  depends_on "freetype"
+  depends_on "gdk-pixbuf"
+  depends_on "glib"
+  depends_on "gmp"
+  depends_on "harfbuzz"
+  depends_on "jpeg-turbo"
+  depends_on "libpng"
+  depends_on "libtiff"
+  depends_on "libxml2"
+  depends_on "ncurses"
+  depends_on "pango"
+  depends_on "sqlite"
+  depends_on "systemd"
+  depends_on "zlib-ng-compat"
+
   def install
     args = %w[
       --with-pgtk

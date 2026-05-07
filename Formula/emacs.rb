@@ -14,7 +14,6 @@ class Emacs < Formula
     sha256 x86_64_linux: "cf54de015b9550890a8ebfe9510f887cd44bd2cf96b1d3f557f8a269fb1adb13"
   end
 
-  depends_on "gcc" => :build
   depends_on "pkgconf" => :build
 
   depends_on "at-spi2-core"
@@ -22,6 +21,7 @@ class Emacs < Formula
   depends_on "dbus"
   depends_on "fontconfig"
   depends_on "freetype"
+  depends_on "gcc"
   depends_on "gdk-pixbuf"
   depends_on "glib"
   depends_on "gmp"

@@ -37,7 +37,7 @@ class Emacs < Formula
   depends_on "pango"
   depends_on "sqlite"
   depends_on "systemd"
-  depends_on "tree-sitter"
+  depends_on "tree-sitter@0.25"
   depends_on "zlib-ng-compat"
 
   def install
@@ -62,9 +62,6 @@ class Emacs < Formula
     # 'https://github.com/NixOS/nixpkgs/blob/c9d1572336ba8ba2936add51ea4615a6bc1effaa/pkgs/applications/editors/emacs/make-emacs.nix'
     # to make the generated dump file hermetic.
     inreplace "src/Makefile.in", "RUN_TEMACS = ./temacs", "RUN_TEMACS = env -i ./temacs"
-
-    # Tree sitter patches
-    inreplace "src/treesit.c", "ts_language_version", "ts_language_abi_version"
 
     system "./configure", *args, *std_configure_args
     system "make", "install"

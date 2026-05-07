@@ -1,3 +1,7 @@
+# TODO:
+# Integrate systemd service
+# Add desktop integration without forcing Brew in $PATH/$XDG_DATA_DIR
+
 class Emacs < Formula
   desc "GNU Emacs text editor"
   homepage "https://www.gnu.org/software/emacs"
@@ -17,7 +21,7 @@ class Emacs < Formula
     args = %w[
       --with-pgtk
       --with-tree-sitter
-      --with-native-compilation
+      --with-native-compilation=aot
       --with-json
     ]
 

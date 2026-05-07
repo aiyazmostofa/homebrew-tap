@@ -1,6 +1,5 @@
-# TODO:
-# Integrate systemd service
-# Add desktop integration without forcing Brew in $PATH/$XDG_DATA_DIR
+# TODO: Integrate systemd service
+# TODO: Add desktop integration without forcing Brew in $PATH/$XDG_DATA_DIR
 
 class Emacs < Formula
   desc "GNU Emacs text editor"

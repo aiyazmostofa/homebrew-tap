@@ -11,6 +11,6 @@ class NixStatic < Formula
   end
 
   test do
-    system "#{bin}/nix", "--version"
+    system bin/"nix", "--version"
   end
 end

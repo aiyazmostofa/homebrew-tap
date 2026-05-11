@@ -24,6 +24,7 @@ class Emacs < Formula
   depends_on "gcc"
   depends_on "gdk-pixbuf"
   depends_on "glib"
+  depends_on "glibc"
   depends_on "gmp"
   depends_on "gnutls"
   depends_on "gtk+3"

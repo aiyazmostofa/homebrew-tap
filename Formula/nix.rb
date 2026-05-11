@@ -5,6 +5,11 @@ class Nix < Formula
   sha256 "fd3503d603fd27332e29cd2f86c2477f93a097920bdd2b7653342d52602ac378"
   license "LGPL-2.1-only"
 
+  bottle do
+    root_url "https://github.com/aiyazmostofa/homebrew-tap/releases/download/nix-2.34.7"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "9e2e5a764591eb5c7ac881cd258e02abb50dacd93962ab89d18ff856c713efcd"
+  end
+
   def install
     bin.install Dir["bin/*"]
     share.install Dir["share/*"]

@@ -1,18 +1,24 @@
-# Aiyazmostofa Tap
+# Homebrew Tap
+Personal tap tailored for Linux.
+Great for (and mostly tested on) [Universal Blue spins of Linux](https://universal-blue.org/).
 
-## How do I install these formulae?
+## Usage
+Do `brew tap aiyazmostofa/tap` and then `brew install <formula>`.
 
-`brew install aiyazmostofa/tap/<formula>`
+## Packages
+### Emacs
+Builds Emacs from source, using Brew libraries.
 
-Or `brew tap aiyazmostofa/tap` and then `brew install <formula>`.
+Some drawbacks:
 
-Or, in a `brew bundle` `Brewfile`:
+- Extremely heavy dependencies (for example, all of LLVM and GCC)
+- Desktop entry needs `.linuxbrew/bin` in `PATH`
+- Desktop entry needs `.linuxbrew/share` in `XDG_DATA_DIRS`
+- Not configurable (it has just enough for me to be happy)
+- Only tested by me
 
-```ruby
-tap "aiyazmostofa/tap"
-brew "<formula>"
-```
+### Nix
+Repackages my own [redistribution of Nix(Static)](https://github.com/aiyazmostofa/nix).
 
-## Documentation
-
-`brew help`, `man brew` or check [Homebrew's documentation](https://docs.brew.sh).
+## License
+[MIT License](./LICENSE)

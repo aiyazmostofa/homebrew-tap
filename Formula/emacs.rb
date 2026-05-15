@@ -67,7 +67,7 @@ class Emacs < Formula
     system "make", "install"
 
     # Binary
-    (bin/"emacs").write_env_script libexec/"bin/emacs", PATH: "#{Formula["gcc"].opt_bin}:$PATH"
+    (bin/"emacs").write_env_script libexec/"bin/emacs", PATH: "#{Formula["gcc"].opt_bin}:#{HOMEBREW_PREFIX}/bin:$PATH"
 
     # Desktop Entry
     (share/"applications").mkpath

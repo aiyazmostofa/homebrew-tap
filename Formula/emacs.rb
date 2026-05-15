@@ -9,8 +9,8 @@ class Emacs < Formula
 
   bottle do
     root_url "https://github.com/aiyazmostofa/homebrew-tap/releases/download/emacs-30.2"
-    rebuild 5
-    sha256 x86_64_linux: "6c3e7a6c7e5047f4fbcb3fdb509fa8d51e796db2217e66430c0f6083f9b67024"
+    rebuild 6
+    sha256 x86_64_linux: "3a9cb76926681c49a17341f1bfead338fda92a1003063dd1490039f55ee68c17"
   end
 
   depends_on "pkgconf" => :build

@@ -66,8 +66,18 @@ class Emacs < Formula
     system "./configure", *args
     system "make", "install"
 
+    # A hack to make sure that GCC can be recognized by Emacs
+    gcc = Formula["gcc"]
+    gcc_major = gcc.version.to_s.split(".").first
+    gcc_bin = libexec/"gcc-bin"
+    gcc_bin.mkpath
+    gcc_bin.install_symlink gcc.opt_bin/"gcc-#{gcc_major}" => "gcc"
+    gcc_bin.install_symlink gcc.opt_bin/"gcc-#{gcc_major}" => "cc"
+    gcc_bin.install_symlink gcc.opt_bin/"g++-#{gcc_major}" => "g++"
+    gcc_bin.install_symlink gcc.opt_bin/"g++-#{gcc_major}" => "c++"
+
     # Binary
-    (bin/"emacs").write_env_script libexec/"bin/emacs", PATH: "#{Formula["gcc"].opt_bin}:#{HOMEBREW_PREFIX}/bin:$PATH"
+    (bin/"emacs").write_env_script libexec/"bin/emacs", PATH: "#{gcc_bin}:#{HOMEBREW_PREFIX}/bin:$PATH"
 
     # Desktop Entry
     (share/"applications").mkpath
